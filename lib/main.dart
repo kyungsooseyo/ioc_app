@@ -1,3 +1,5 @@
+import 'dart:math';
+import 'dart:developer' as developer;
 import 'package:flutter/material.dart';
 
 void main() {
@@ -66,6 +68,9 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       _counter++;
     });
+    //  todo:使用developer.log打印日志
+    debugPrint('数量:$_counter');
+    developer.log('数量:$_counter', name: 'MyHomePage');
   }
 
   @override
