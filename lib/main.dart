@@ -1,6 +1,8 @@
 import 'dart:math';
 import 'dart:developer' as developer;
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'components/my_button.dart';
 
 void main() {
   runApp(const MyApp());
@@ -73,6 +75,11 @@ class _MyHomePageState extends State<MyHomePage> {
     developer.log('数量:$_counter', name: 'MyHomePage');
   }
 
+  handlePress() {
+    debugPrint('点击了');
+    developer.log('点击了', name: 'MyHomePage');
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -92,33 +99,61 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+        child: Container(
+          width: 1000,
+          height: 400,
+          // ~ 因为有这个存在 文字会在右边，但是下面又设置了居中所以不能走到上方，最终文字就是在右侧居中
+          alignment: Alignment.topRight,
+          decoration: const BoxDecoration(
+              // color: Color.fromARGB(255, 241, 245, 255),
+              border: Border(
+                right: BorderSide(color: Colors.amberAccent, width: 10),
+              ),
+              // shape: BoxShape.circle,
+              gradient: LinearGradient(
+                  colors: [Colors.red, Colors.blue],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight)),
+
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                'kk',
+                style: TextStyle(color: Colors.cyan, fontSize: 50),
+              ),
+              const Text('hh',
+                  style: TextStyle(color: Colors.pink, fontSize: 55)),
+              MyButton(onPressed: handlePress, child: const Text('click me')),
+            ],
+          ),
         ),
+
+        // child: Column(
+        //   // Column is also a layout widget. It takes a list of children and
+        //   // arranges them vertically. By default, it sizes itself to fit its
+        //   // children horizontally, and tries to be as tall as its parent.
+        //   //
+        //   // Column has various properties to control how it sizes itself and
+        //   // how it positions its children. Here we use mainAxisAlignment to
+        //   // center the children vertically; the main axis here is the vertical
+        //   // axis because Columns are vertical (the cross axis would be
+        //   // horizontal).
+        //   //
+        //   // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
+        //   // action in the IDE, or press "p" in the console), to see the
+        //   // wireframe for each widget.
+        //   mainAxisAlignment: MainAxisAlignment.center,
+        //   children: <Widget>[
+        //     const Text(
+        //       'You have pushed the button this many times:',
+        //     ),
+        //     Text(
+        //       '$_counter',
+        //       style: Theme.of(context).textTheme.headlineMedium,
+        //     ),
+        //   ],
+        // ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
