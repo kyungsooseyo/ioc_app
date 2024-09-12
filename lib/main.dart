@@ -3,6 +3,7 @@ import 'dart:developer' as developer;
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'components/my_button.dart';
+import 'practice/my_img.dart';
 
 void main() {
   runApp(const MyApp());
@@ -102,8 +103,10 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Container(
           width: 1000,
           height: 400,
+
           // ~ 因为有这个存在 文字会在右边，但是下面又设置了居中所以不能走到上方，最终文字就是在右侧居中
-          alignment: Alignment.topRight,
+          // alignment: Alignment.topRight,
+          alignment: Alignment.center,
           decoration: const BoxDecoration(
               // color: Color.fromARGB(255, 241, 245, 255),
               border: Border(
@@ -115,8 +118,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight)),
 
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Wrap(
+            direction: Axis.horizontal,
+            //! 这个属性改了 原来叫mainAxisAlignment
+            alignment: WrapAlignment.center,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            spacing: 10,
             children: [
               const Text(
                 'kk',
@@ -125,6 +132,31 @@ class _MyHomePageState extends State<MyHomePage> {
               const Text('hh',
                   style: TextStyle(color: Colors.pink, fontSize: 55)),
               MyButton(onPressed: handlePress, child: const Text('click me')),
+              Container(
+                width: 150,
+                height: 150,
+                margin: const EdgeInsets.only(top: 20),
+                decoration: const BoxDecoration(
+                    color: Colors.amber,
+                    shape: BoxShape.circle,
+                    //~ 这种方式相当于css的背景图片 如果把img作为child是没办法改变形状的
+                    image: DecorationImage(
+                        image: NetworkImage(
+                            'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'))),
+
+                // child: MyImg(
+                //   image: Image.network(
+                //     'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
+                //     // fit: BoxFit.cover,
+                //   ),
+                // ),
+              ),
+              // ! 路径前面不能加assets
+              Image.asset(
+                'images/b-clock.png',
+                width: 20,
+                height: 20,
+              ),
             ],
           ),
         ),
