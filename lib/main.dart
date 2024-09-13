@@ -1,9 +1,11 @@
-import 'dart:math';
 import 'dart:developer' as developer;
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'components/my_button.dart';
-import 'practice/my_img.dart';
+
+import 'practice/practice_wrap.dart';
+import 'practice/practice_list_view.dart';
+import 'practice/practice_list_view2.dart';
+import 'practice/practice_list_view3.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,7 +35,7 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.cyan),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page22'),
@@ -76,11 +78,6 @@ class _MyHomePageState extends State<MyHomePage> {
     developer.log('数量:$_counter', name: 'MyHomePage');
   }
 
-  handlePress() {
-    debugPrint('点击了');
-    developer.log('点击了', name: 'MyHomePage');
-  }
-
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -91,9 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
+        //- 这个背景色会继承主题色
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
@@ -101,80 +96,29 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: Container(
-          width: 1000,
-          height: 400,
+            width: MediaQuery.of(context).size.width,
+            height: 400,
 
-          // ~ 因为有这个存在 文字会在右边，但是下面又设置了居中所以不能走到上方，最终文字就是在右侧居中
-          // alignment: Alignment.topRight,
-          alignment: Alignment.center,
-          decoration: const BoxDecoration(
-              // color: Color.fromARGB(255, 241, 245, 255),
-              border: Border(
-                right: BorderSide(color: Colors.amberAccent, width: 10),
-              ),
-              // shape: BoxShape.circle,
-              gradient: LinearGradient(
-                  colors: [Colors.red, Colors.blue],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight)),
+            // ~ 因为有这个存在 文字会在右边，但是下面又设置了居中所以不能走到上方，最终文字就是在右侧居中
+            // alignment: Alignment.topRight,
+            alignment: Alignment.center,
+            decoration: const BoxDecoration(
+                // color: Color.fromARGB(255, 241, 245, 255),
+                border: Border(
+                  right: BorderSide(color: Colors.amberAccent, width: 10),
+                ),
+                // shape: BoxShape.circle,
+                gradient: LinearGradient(
+                    colors: [Colors.red, Colors.blue],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight)),
 
-          child: Wrap(
-            direction: Axis.horizontal,
-            //! 这个属性改了 原来叫mainAxisAlignment
-            alignment: WrapAlignment.center,
-            crossAxisAlignment: WrapCrossAlignment.center,
-            spacing: 10,
-            children: [
-              const Text(
-                'kk',
-                style: TextStyle(color: Colors.cyan, fontSize: 50),
-              ),
-              const Text('hh',
-                  style: TextStyle(color: Colors.pink, fontSize: 55)),
-              MyButton(onPressed: handlePress, child: const Text('click me')),
-              Container(
-                width: 150,
-                height: 150,
-                margin: const EdgeInsets.only(top: 20),
-                decoration: const BoxDecoration(
-                    color: Colors.amber,
-                    shape: BoxShape.circle,
-                    //~ 这种方式相当于css的背景图片 如果把img作为child是没办法改变形状的
-                    image: DecorationImage(
-                        image: NetworkImage(
-                            'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'))),
-
-                // child: MyImg(
-                //   image: Image.network(
-                //     'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg',
-                //     // fit: BoxFit.cover,
-                //   ),
-                // ),
-              ),
-              // ! 路径前面不能加assets
-              Image.asset(
-                'images/b-clock.png',
-                width: 20,
-                height: 20,
-              ),
-            ],
-          ),
-        ),
+            // child: const MyWrap(),
+            // child: const PracticeLisView(),
+            // child: const PracticeListView2(),
+            child: const PracticeListView3()),
 
         // child: Column(
-        //   // Column is also a layout widget. It takes a list of children and
-        //   // arranges them vertically. By default, it sizes itself to fit its
-        //   // children horizontally, and tries to be as tall as its parent.
-        //   //
-        //   // Column has various properties to control how it sizes itself and
-        //   // how it positions its children. Here we use mainAxisAlignment to
-        //   // center the children vertically; the main axis here is the vertical
-        //   // axis because Columns are vertical (the cross axis would be
-        //   // horizontal).
-        //   //
-        //   // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-        //   // action in the IDE, or press "p" in the console), to see the
-        //   // wireframe for each widget.
         //   mainAxisAlignment: MainAxisAlignment.center,
         //   children: <Widget>[
         //     const Text(
