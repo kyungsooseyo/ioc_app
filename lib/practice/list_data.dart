@@ -21,7 +21,7 @@ List<DataItem> list = [
       title: "Practice Wrap",
       description: "This is a practice of Wrap widget",
       route: "/practice_wrap",
-      url: "https://cdn2.thecatapi.com/images/MTYwNjYwMg.jpg"),
+      url: "https://images.dog.ceo/breeds/poodle-toy/n02113624_1023.jpg"),
   DataItem(
       title: "Practice ListView",
       description: "This is a practice of ListView widget",
@@ -39,7 +39,7 @@ List<DataItem> list = [
 //     "title": "Practice Wrap",
 //     "description": "This is a practice of Wrap widget",
 //     "route": "/practice_wrap",
-//     "url": "https://cdn2.thecatapi.com/images/MTYwNjYwMg.jpg"
+//     "url": "https://images.dog.ceo/breeds/poodle-toy/n02113624_1023.jpg"
 //   },
 //   {
 //     "title": "Practice ListView",

@@ -6,6 +6,11 @@ import 'practice/practice_wrap.dart';
 import 'practice/practice_list_view.dart';
 import 'practice/practice_list_view2.dart';
 import 'practice/practice_list_view3.dart';
+import 'practice/practice_grid_view.dart';
+import 'practice/practice_grid_view2.dart';
+import 'practice/practice_icon_container.dart';
+import 'practice/practice_flex.dart';
+import 'practice/practice_wrap.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,7 +43,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.cyan),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page22'),
+      home: const MyHomePage(title: 'Flutter Demo Home Page2332'),
     );
   }
 }
@@ -94,10 +99,10 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Center(
+      body: Container(
         child: Container(
             width: MediaQuery.of(context).size.width,
-            height: 400,
+            height: MediaQuery.of(context).size.height,
 
             // ~ 因为有这个存在 文字会在右边，但是下面又设置了居中所以不能走到上方，最终文字就是在右侧居中
             // alignment: Alignment.topRight,
@@ -116,7 +121,24 @@ class _MyHomePageState extends State<MyHomePage> {
             // child: const MyWrap(),
             // child: const PracticeLisView(),
             // child: const PracticeListView2(),
-            child: const PracticeListView3()),
+            // child: const PracticeListView3()),
+            // child: const PracticeGridView2()),
+            // child: const Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //   children: [
+            //     PracticeIconContainer(
+            //         customIcon: Icon(Icons.ac_unit),
+            //         color: Color.fromRGBO(116, 185, 255, 1)),
+            //     PracticeIconContainer(
+            //       customIcon: Icon(Icons.access_alarm),
+            //     ),
+            //     PracticeIconContainer(
+            //       customIcon: Icon(Icons.access_time),
+            //     ),
+            //   ],
+            // ))
+            child: const PracticeFlex()),
+        // child: const MyWrap()),
 
         // child: Column(
         //   mainAxisAlignment: MainAxisAlignment.center,

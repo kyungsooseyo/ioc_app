@@ -40,9 +40,9 @@ class MyWrap extends StatelessWidget {
           //   ),
           // ),
         ),
-        // ! 路径前面不能加assets
+        // ! 路径前面不能加assets 可能处理方式不一样 在windows需要加assets
         Image.asset(
-          'images/b-clock.png',
+          'assets/images/b-clock.png',
           width: 20,
           height: 20,
         ),

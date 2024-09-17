@@ -18,23 +18,8 @@ class PracticeLisView extends StatelessWidget {
       // padding: const EdgeInsets.all(10),
 
       child: ListView(
-        children: const [
-          ListTile(
-            leading: Icon(Icons.map),
-            title: Text('Map'),
-            contentPadding: EdgeInsets.symmetric(horizontal: 50),
+          // children: List.generate(100, (index) => _initData(context, index)),
           ),
-          Divider(height: 5),
-          ListTile(
-            leading: Icon(
-              Icons.photo_album,
-              color: Colors.amber,
-            ),
-            title: Text('Album'),
-            trailing: Icon(Icons.arrow_forward_ios),
-          ),
-        ],
-      ),
     );
   }
 }
