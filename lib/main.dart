@@ -11,6 +11,10 @@ import 'practice/practice_grid_view2.dart';
 import 'practice/practice_icon_container.dart';
 import 'practice/practice_flex.dart';
 import 'practice/practice_wrap.dart';
+import 'practice/practice_stack.dart';
+import 'practice/practice_aspectratio.dart';
+import 'practice/practice_card.dart';
+import 'practice/practice_button.dart';
 
 void main() {
   runApp(const MyApp());
@@ -43,7 +47,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.cyan),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page2332'),
+      home: const MyHomePage(title: 'Home Page'),
     );
   }
 }
@@ -137,7 +141,11 @@ class _MyHomePageState extends State<MyHomePage> {
             //     ),
             //   ],
             // ))
-            child: const PracticeFlex()),
+            // child: const PracticeFlex()),
+            // child: const PracticeStack()),
+            // child: const PracticeAspectRatio()),
+            // child: const PracticeCard()),
+            child: PracticeButton()),
         // child: const MyWrap()),
 
         // child: Column(
