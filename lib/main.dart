@@ -15,6 +15,9 @@ import 'practice/practice_stack.dart';
 import 'practice/practice_aspectratio.dart';
 import 'practice/practice_card.dart';
 import 'practice/practice_button.dart';
+import 'practice/practice_wrap2.dart';
+import 'practice/practice_state.dart';
+import 'practice/practice_state_list.dart';
 
 void main() {
   runApp(const MyApp());
@@ -145,8 +148,11 @@ class _MyHomePageState extends State<MyHomePage> {
             // child: const PracticeStack()),
             // child: const PracticeAspectRatio()),
             // child: const PracticeCard()),
-            child: PracticeButton()),
-        // child: const MyWrap()),
+            // child: PracticeButton()),
+            // child: const MyWrap()),
+            // child: const PracticeWrap2()),
+            // child: const PracticeState()),
+            child: const PracticeStateList()),
 
         // child: Column(
         //   mainAxisAlignment: MainAxisAlignment.center,
