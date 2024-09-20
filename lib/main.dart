@@ -18,6 +18,9 @@ import 'practice/practice_button.dart';
 import 'practice/practice_wrap2.dart';
 import 'practice/practice_state.dart';
 import 'practice/practice_state_list.dart';
+import 'pages/tabs/study.dart';
+import 'pages/tabs/business.dart';
+import 'pages/tabs/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,22 +35,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.cyan),
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.blue,
+          accentColor: Colors.red,
+          cardColor: Colors.green,
+          backgroundColor: Colors.amber,
+          errorColor: Colors.red,
+          brightness: Brightness.light,
+        ),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Home Page'),
@@ -56,18 +51,10 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
+  const MyHomePage({super.key, required this.title, this.age = 20});
 
   final String title;
+  final int age;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -75,7 +62,11 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-
+  final List<Widget> _pageList = [
+    const Home(),
+    const Business(),
+    const Study(),
+  ];
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -90,20 +81,38 @@ class _MyHomePageState extends State<MyHomePage> {
     developer.log('数量:$_counter', name: 'MyHomePage');
   }
 
+  int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: (value) {
+          setState(() {
+            //~ 将来可以根据index来切换页面 把页面组件方到数组里面，然后根据index来取 通过body属性来切换
+            _currentIndex = value;
+          });
+        },
+        currentIndex: _currentIndex,
+        fixedColor: Colors.pink,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: '首页',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.business),
+            label: '商城',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.school),
+            label: '学习',
+          ),
+        ],
+      ),
       appBar: AppBar(
         //- 这个背景色会继承主题色
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
+        //- 这个widget 是上下文的意思 能够拿到父类的一些属性;添加了age属性后，这里就可以拿到age属性
         title: Text(widget.title),
       ),
       body: Container(
@@ -152,7 +161,8 @@ class _MyHomePageState extends State<MyHomePage> {
             // child: const MyWrap()),
             // child: const PracticeWrap2()),
             // child: const PracticeState()),
-            child: const PracticeStateList()),
+            // child: const PracticeStateList()),
+            child: _pageList[_currentIndex]),
 
         // child: Column(
         //   mainAxisAlignment: MainAxisAlignment.center,
@@ -168,10 +178,12 @@ class _MyHomePageState extends State<MyHomePage> {
         // ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () => _incrementCounter(),
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation
+          .centerDocked, // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
