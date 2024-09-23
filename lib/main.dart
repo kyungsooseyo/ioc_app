@@ -21,6 +21,7 @@ import 'practice/practice_state_list.dart';
 import 'pages/tabs/study.dart';
 import 'pages/tabs/business.dart';
 import 'pages/tabs/home.dart';
+import 'pages/search/search.dart';
 
 void main() {
   runApp(const MyApp());
@@ -67,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
     const Business(),
     const Study(),
   ];
-  void _incrementCounter() {
+  void _incrementCounter(BuildContext context) {
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
@@ -79,6 +80,10 @@ class _MyHomePageState extends State<MyHomePage> {
     //  todo:使用developer.log打印日志
     debugPrint('数量:$_counter');
     developer.log('数量:$_counter', name: 'MyHomePage');
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const Search()),
+    );
   }
 
   int _currentIndex = 0;
@@ -114,6 +119,13 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         //- 这个widget 是上下文的意思 能够拿到父类的一些属性;添加了age属性后，这里就可以拿到age属性
         title: Text(widget.title),
+        // bottom: const TabBar(
+        //   tabs: [
+        //     Tab(text: '热门'),
+        //     Tab(text: '推荐'),
+        //     Tab(text: '关注'),
+        //   ],
+        // ),
       ),
       body: Container(
         child: Container(
@@ -178,7 +190,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _incrementCounter(),
+        onPressed: () => _incrementCounter(context),
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
