@@ -1,7 +1,8 @@
 import 'dart:developer' as developer;
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:flutter/widgets.dart';
-
+import './routes/config_route.dart';
 import 'practice/practice_wrap.dart';
 import 'practice/practice_list_view.dart';
 import 'practice/practice_list_view2.dart';
@@ -33,20 +34,23 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch: Colors.blue,
-          accentColor: Colors.red,
-          cardColor: Colors.green,
-          backgroundColor: Colors.amber,
+          accentColor: Colors.blue,
+          cardColor: Color.fromARGB(255, 65, 155, 220),
+          backgroundColor: Colors.white,
           errorColor: Colors.red,
           brightness: Brightness.light,
         ),
         useMaterial3: true,
       ),
+      initialRoute: '/',
       home: const MyHomePage(title: 'Home Page'),
+      getPages: ConfigRoute.getPages,
+      defaultTransition: Transition.rightToLeft,
     );
   }
 }
@@ -66,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<Widget> _pageList = [
     const Home(),
     const Business(),
-    const Study(),
+    Study(),
   ];
   void _incrementCounter(BuildContext context) {
     setState(() {
@@ -98,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
           });
         },
         currentIndex: _currentIndex,
-        fixedColor: Colors.pink,
+        fixedColor: Colors.blueGrey,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

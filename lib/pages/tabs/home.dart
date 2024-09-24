@@ -1,31 +1,47 @@
 import 'package:flutter/material.dart';
-import '../search/form.dart';
+import 'package:get/get.dart';
+
 import '../search/news.dart';
 
 class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+  const Home({super.key});
   void handleRoute(BuildContext ctx) {
-    Navigator.of(ctx).push(
-      MaterialPageRoute(
-        builder: (_) {
-          return const MyForm();
-        },
-      ),
-    );
+    Get.toNamed('/study', arguments: {
+      'id': 1111,
+      'name': '哈哈',
+    });
   }
 
   void handleRouteNews(BuildContext ctx) {
-    Navigator.of(ctx).push(
-      MaterialPageRoute(
-        builder: (_) {
-          return const News(
-            title: 'tttttt',
-            id: 1111,
-          );
-        },
-      ),
+    //= 能不能在下个页面看到返回的图标取决于用的什么方法 用off就没有返回图标;右滑也返回不了
+    Get.to(const News(
+      title: 'News',
+      id: 1111,
+    ));
+  }
+
+  void handleTestDialog() {
+    Get.defaultDialog(
+      title: 'Dialog',
+      //~这个属性就是点击外部区域是否会关闭弹窗
+      barrierDismissible: false,
+      content: const Text('This is a dialog'),
+      textConfirm: 'OK',
+      textCancel: 'Cancel',
+      onConfirm: () {
+        Get.back();
+      },
+      onCancel: () {
+        Get.back();
+      },
     );
   }
+
+  void handleTestSnap() {
+    Get.snackbar('title', 'message');
+  }
+
+  void handleTestToast() {}
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +50,7 @@ class Home extends StatelessWidget {
         //写一个button
         ElevatedButton(
             onPressed: () => handleRoute(context),
-            child: const Text('route1',
+            child: const Text('route home',
                 style: TextStyle(
                   color: Colors.black,
                 ))),
@@ -44,6 +60,11 @@ class Home extends StatelessWidget {
                 style: TextStyle(
                   color: Colors.black,
                 ))),
+        TextButton(
+            onPressed: handleTestDialog, child: const Text('text button')),
+        TextButton(
+            onPressed: handleTestSnap, child: const Text('text button111')),
+        TextButton(onPressed: handleTestToast, child: const Text('toast')),
       ],
     );
   }

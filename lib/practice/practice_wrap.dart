@@ -20,7 +20,10 @@ class MyWrap extends StatelessWidget {
           style: TextStyle(color: Colors.cyan, fontSize: 50),
         ),
         const Text('hh', style: TextStyle(color: Colors.pink, fontSize: 55)),
-        MyButton(onPressed: handlePress, child: const Text('click me')),
+        MyButton(
+          onPressed: handlePress,
+          child: const Text('click me'),
+        ),
         Container(
           width: 150,
           height: 150,
