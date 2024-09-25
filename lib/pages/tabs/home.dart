@@ -6,10 +6,7 @@ import '../search/news.dart';
 class Home extends StatelessWidget {
   const Home({super.key});
   void handleRoute(BuildContext ctx) {
-    Get.toNamed('/study', arguments: {
-      'id': 1111,
-      'name': '哈哈',
-    });
+    Get.toNamed('/study');
   }
 
   void handleRouteNews(BuildContext ctx) {
@@ -42,6 +39,9 @@ class Home extends StatelessWidget {
   }
 
   void handleTestToast() {}
+  void handleLogin(BuildContext ctx) {
+    Get.toNamed('/user');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +50,7 @@ class Home extends StatelessWidget {
         //写一个button
         ElevatedButton(
             onPressed: () => handleRoute(context),
-            child: const Text('route home',
+            child: const Text('route study',
                 style: TextStyle(
                   color: Colors.black,
                 ))),
@@ -65,6 +65,8 @@ class Home extends StatelessWidget {
         TextButton(
             onPressed: handleTestSnap, child: const Text('text button111')),
         TextButton(onPressed: handleTestToast, child: const Text('toast')),
+        TextButton(
+            onPressed: () => handleLogin(context), child: const Text('login')),
       ],
     );
   }

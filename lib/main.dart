@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/widgets.dart';
 import './routes/config_route.dart';
+import './binding/binding.dart';
 import 'practice/practice_wrap.dart';
 import 'practice/practice_list_view.dart';
 import 'practice/practice_list_view2.dart';
@@ -47,6 +48,8 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
+      //= 这个里面的属性是全局的，可以在任何地方使用 放着所有的controller
+      initialBinding: AllBinding(),
       initialRoute: '/',
       home: const MyHomePage(title: 'Home Page'),
       getPages: ConfigRoute.getPages,
