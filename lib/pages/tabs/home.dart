@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ioc_app/controllers/study_controller.dart';
 
 import '../search/news.dart';
 
@@ -65,8 +66,14 @@ class Home extends StatelessWidget {
         TextButton(
             onPressed: handleTestSnap, child: const Text('text button111')),
         TextButton(onPressed: handleTestToast, child: const Text('toast')),
+        //! 这样的逻辑是对的 进入到study进行加数后 因为在外层还用到这个controller 所以他不会销毁;并且这在勾着状态 所以StudyController的init在初始化就直接执行了
+        Obx(() => Text('count: ${Get.find<StudyController>().counter}',
+            style: const TextStyle(fontSize: 30, color: Colors.green))),
         TextButton(
             onPressed: () => handleLogin(context), child: const Text('login')),
+        TextButton(
+            onPressed: Get.find<StudyController>().increment,
+            child: const Text('增加study count')),
       ],
     );
   }

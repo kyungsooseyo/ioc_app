@@ -10,21 +10,22 @@ class UserController extends GetxController {
     logger.i('user onInit');
   }
 
-  // @override
-  // onClose() {
-  //   super.onClose();
-  //   logger.i('user onClose');
-  // }
+  @override
+  void dispose() {
+    super.dispose();
+    logger.i('user dispose');
+  }
+
+  @override
+  void onClose() {
+    logger.i('user onClose');
+  }
+
   RxInt state = 0.obs;
   get counter => state.value;
   set counter(value) => state.value = value;
   RxString useName = '张三'.obs;
   get userName => useName.value;
-
-  void changeUserName(String name) {
-    useName.value = name;
-    update();
-  }
 
   void increment() {
     counter++;

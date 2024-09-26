@@ -7,7 +7,18 @@ class StudyController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    // logger.i('onInit');
+    logger.i('study onInit');
+  }
+
+  @override
+  void onReady() {
+    logger.i('study ready');
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    logger.i('study dispose');
   }
 
   RxInt state = 0.obs;

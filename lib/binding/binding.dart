@@ -6,7 +6,12 @@ class AllBinding implements Bindings {
   @override
   void dependencies() {
     //~lazyPut()方法是延迟加载，只有在第一次使用时才会初始化
-    Get.lazyPut<UserController>(() => UserController());
-    Get.lazyPut<StudyController>(() => StudyController());
+    Get.lazyPut<UserController>(
+      () => UserController(),
+      fenix: true,
+    );
+    // Get.put(UserController());
+    Get.lazyPut<StudyController>(() => StudyController(), fenix: true);
+    // Get.put(StudyController());
   }
 }

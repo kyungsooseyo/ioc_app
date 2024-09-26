@@ -73,7 +73,6 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<Widget> _pageList = [
     const Home(),
     const Business(),
-    Study(),
   ];
   void _incrementCounter(BuildContext context) {
     setState(() {

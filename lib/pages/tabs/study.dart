@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import 'package:get/get_state_manager/get_state_manager.dart';
-// import 'package:ioc_app/controllers/user_controller.dart';
 import '../../controllers/study_controller.dart';
 
-class Study extends GetView<StudyController> {
+class Study extends StatelessWidget {
   //获取参数
   //! 必须用Get.arguments来取值 不能先把arguments定义出来再赋值
   // late final String name = Get.arguments['name']!;
   // late final int id = Get.arguments['id']!;
   //` 在main里面指定binding了 所以这里可以直接用Get.find
   final StudyController studyState = Get.find<StudyController>();
-  // UserController userState = Get.find<UserController>();
   Study({super.key});
   @override
   Widget build(BuildContext context) {
